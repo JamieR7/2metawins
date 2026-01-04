@@ -108,4 +108,282 @@
             display: grid;
         }
         
-        .resource-b
+        .resource-btn {
+            background: #fff;
+            color: #004587;
+            padding: 1.5rem 1rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 120px;
+        }
+        
+        .resource-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 12px rgba(251, 186, 7, 0.4);
+        }
+        
+        .resource-subtitle {
+            font-size: 0.8rem;
+            font-weight: normal;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+        
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .video-modal.active {
+            display: flex;
+        }
+        
+        .video-container {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .video-container video {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 12px;
+        }
+        
+        .close-video {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: #e73037;
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .reflection-section {
+            display: none;
+            background: #fff;
+            color: #004587;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-top: 2rem;
+        }
+        
+        .reflection-section.active {
+            display: block;
+        }
+        
+        .reflection-section h2 {
+            margin-bottom: 1.5rem;
+            color: #004587;
+        }
+        
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .input-group.win label {
+            color: #004587;
+        }
+        
+        .input-group.wobble label {
+            color: #e73037;
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: 1rem;
+            border: 2px solid #004587;
+            border-radius: 8px;
+        }
+        
+        .wobble input {
+            border-color: #e73037;
+        }
+        
+        .autocomplete-results {
+            max-height: 200px;
+            overflow-y: auto;
+            background: #fff;
+            border: 2px solid #004587;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+        }
+        
+        .autocomplete-item {
+            padding: 0.75rem;
+            cursor: pointer;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .autocomplete-item:hover {
+            background: #fbba07;
+        }
+        
+        .concept-unit {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 0.25rem;
+        }
+        
+        .selected-concept {
+            display: inline-block;
+            background: #fbba07;
+            color: #004587;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            margin-top: 0.5rem;
+            font-weight: bold;
+        }
+        
+        .submit-btn {
+            background: #fbba07;
+            color: #004587;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.25rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 1rem;
+            transition: transform 0.2s;
+        }
+        
+        .submit-btn:hover {
+            transform: scale(1.02);
+        }
+        
+        .submit-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>2 Wins and a Wobble</h1>
+        
+        <div class="time-selector" id="timeSelector">
+            <label for="studyTime">Choose your study time:</label>
+            <br>
+            <select id="studyTime">
+                <option value="5">5 minutes</option>
+                <option value="10">10 minutes</option>
+                <option value="15" selected>15 minutes</option>
+                <option value="20">20 minutes</option>
+                <option value="25">25 minutes</option>
+                <option value="30">30 minutes</option>
+            </select>
+            <button class="start-btn" id="startBtn">Start Studying</button>
+        </div>
+        
+        <div class="timer" id="timer">
+            Study Time: 15:00
+        </div>
+        
+        <div class="study-resources" id="studySection">
+            <a href="https://jamier7.github.io/AnkiSEHS/" class="resource-btn" target="_blank">
+                📚 Flashcards
+                <span class="resource-subtitle">Even better - use your own Anki</span>
+            </a>
+            <a href="https://jamier7.github.io/sehsexam/" class="resource-btn" target="_blank">
+                ✍️ Exam Practice
+            </a>
+            <a href="https://miro.com/app/board/uXjVJBRIutY=/" class="resource-btn" target="_blank">
+                🎯 Multi-choice Practice
+                <span class="resource-subtitle">Trophy Hunting</span>
+            </a>
+            <button class="resource-btn" id="videoBtn">
+                🎥 Watch Video
+            </button>
+        </div>
+        
+        <div class="video-modal" id="videoModal">
+            <div class="video-container">
+                <button class="close-video" id="closeVideo">✕ Close</button>
+                <video id="studyVideo" controls>
+                    <source src="your-video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+        
+        <div class="reflection-section" id="reflectionSection">
+            <h2>Time to Reflect!</h2>
+            
+            <div class="input-group win">
+                <label>🏆 Win #1: What did you nail?</label>
+                <input type="text" id="win1Input" placeholder="Start typing a concept...">
+                <div class="autocomplete-results" id="win1Results"></div>
+                <div id="win1Selected"></div>
+            </div>
+            
+            <div class="input-group win">
+                <label>🏆 Win #2: What else are you confident about?</label>
+                <input type="text" id="win2Input" placeholder="Start typing a concept...">
+                <div class="autocomplete-results" id="win2Results"></div>
+                <div id="win2Selected"></div>
+            </div>
+            
+            <div class="input-group wobble">
+                <label>⚠️ Wobble: What did you discover you didn't know?</label>
+                <input type="text" id="wobbleInput" placeholder="Start typing a concept...">
+                <div class="autocomplete-results" id="wobbleResults"></div>
+                <div id="wobbleSelected"></div>
+            </div>
+            
+            <button class="submit-btn" id="submitBtn" disabled>Submit to Microsoft Form</button>
+        </div>
+    </div>
+
+    <script>
+        const sehsConcepts = [
+            { id: "atp-pc", name: "ATP-PC System", unit: "1.2.1", topic: "Energy Systems" },
+            { id: "lactate", name: "Lactate Threshold", unit: "2.3.1", topic: "Aerobic Training" },
+            { id: "prp", name: "Psychological Refractory Period", unit: "6.2.4", topic: "Skill Acquisition" },
+            { id: "cardiac-output", name: "Cardiac Output", unit: "1.1.3", topic: "Cardiovascular System" },
+            { id: "sliding-filament", name: "Sliding Filament Theory", unit: "1.1.1", topic: "Muscle Contraction" },
+            { id: "vo2max", name: "VO2 Max", unit: "2.3.2", topic: "Aerobic Capacity" },
+            { id: "fast-twitch", name: "Fast-Twitch Muscle Fibers", unit: "1.1.2", topic: "Muscle Fiber Types" }
+        ];
+
+        let timeRemaining;
+        let timerInterval;
+
+        document.getElementById('startBtn').addEventListener('click', function() {
+            const selectedMinutes = parseInt(document.getElementById('studyTime').value);
+            timeRemaining = selectedMinutes * 60;
+            
+            docum
