@@ -1,6 +1,7 @@
 let timeRemaining;
 let timerInterval;
 
+// Timer functionality
 document.getElementById('startBtn').addEventListener('click', function() {
     const selectedMinutes = parseInt(document.getElementById('studyTime').value);
     timeRemaining = selectedMinutes * 60;
@@ -29,6 +30,7 @@ function updateTimer() {
     }
 }
 
+// Music player
 document.getElementById('musicSelect').addEventListener('change', function() {
     const selectedMusic = this.value;
     const musicPlayer = document.getElementById('musicPlayer');
@@ -45,6 +47,7 @@ document.getElementById('musicSelect').addEventListener('change', function() {
     }
 });
 
+// Reflection autocomplete
 const selections = { win1: null, win2: null, wobble: null };
 
 function setupAutocomplete(inputId, resultsId, selectedId, key) {
@@ -91,12 +94,11 @@ function checkSubmitReady() {
     }
 }
 
-// ✨ GOOGLE FORM SUBMISSION - YOUR ACTUAL FORM
+// Google Form submission with YOUR actual entry IDs
 document.getElementById('submitBtn').addEventListener('click', function() {
     const formId = '1FAIpQLSe_2hMaMoZOeQ87kCiDX2jxJVdIOMF76I6fBv8rjYs3Myw6yw';
     const formBaseUrl = `https://docs.google.com/forms/d/e/${formId}/viewform`;
     
-    // Your exact entry IDs from the pre-filled link
     const params = new URLSearchParams({
         'entry.2075252850': selections.win1.name,        // Win #1 Concept
         'entry.351109808': selections.win1.unit,         // Win #1 Unit Code
