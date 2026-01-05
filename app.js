@@ -30,7 +30,10 @@ function updateTimer() {
 // Celebration function with extended fireworks and fanfare
 function celebrate() {
     const timer = document.getElementById('timer');
-    timer.textContent = "🎉 Time's up! Great work! 🎉";
+    timer.innerHTML = `
+        <div>🎉 Time's up! Great work! 🎉</div>
+        <div class="timer-subtitle">Make sure you reflect and submit the form now; it really does make a difference!</div>
+    `;
     timer.style.background = '#fbba07';
     timer.style.color = '#004587';
     timer.style.animation = 'pulse 0.5s ease-in-out infinite';
