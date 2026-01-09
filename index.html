@@ -36,10 +36,47 @@
         }
         .instructions p {
             margin: 0;
+            margin-bottom: 1rem;
+        }
+        .instructions p:last-child {
+            margin-bottom: 0;
         }
         .instructions strong {
             color: #fbba07;
             font-weight: 500;
+        }
+        .music-player {
+            background: #fbba07;
+            color: #004587;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+        }
+        .music-player p {
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+        .music-player select {
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            border: 2px solid #004587;
+            border-radius: 6px;
+            margin: 0.5rem auto;
+            font-weight: 600;
+            min-width: 200px;
+            display: block;
+            background: #fff;
+            font-family: 'Gotham', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+        }
+        .music-player audio {
+            margin: 0.75rem auto 0 auto;
+            max-width: 300px;
+            display: none;
+        }
+        .music-player audio.active {
+            display: block;
         }
         .reflection-section {
             background: #fff;
@@ -64,7 +101,7 @@
             font-size: 1.1rem;
             color: #004587;
         }
-        select {
+        select, input[type="text"] {
             width: 100%;
             padding: 0.75rem;
             font-size: 1rem;
@@ -104,12 +141,36 @@
         
         <div class="instructions">
             <p>[Add your instructions here]</p>
+            <p><strong>Do you focus better with music?</strong> Put on some headphones and try it out as you fill in this form.</p>
+        </div>
+
+        <div class="music-player">
+            <p style="font-weight: bold; font-size: 1.1rem;">Study Music</p>
+            <select id="musicSelect">
+                <option value="">Select music...</option>
+                <option value="Music/BrainFM.mp3">BrainFM</option>
+                <option value="Music/Endel.mp3">Endel</option>
+            </select>
+            <audio id="musicPlayer" controls>
+                <source id="musicSource" src="" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
         </div>
 
         <div class="reflection-section">
             <h2>Learner Ambition Reflection</h2>
             
             <form id="reflectionForm">
+                <div class="input-group">
+                    <label>Name (optional)</label>
+                    <input type="text" id="studentName" name="student_name">
+                </div>
+
+                <div class="input-group">
+                    <label>Class (optional)</label>
+                    <input type="text" id="studentClass" name="student_class">
+                </div>
+
                 <div class="input-group">
                     <label>What Learner Ambition do you feel you are best at?</label>
                     <select id="bestAt" name="best_at" required>
@@ -164,33 +225,71 @@
                     <textarea name="better_reason" required></textarea>
                 </div>
 
+                <div class="input-group">
+                    <label>Is there anything else you would like to tell us about the metacognition project or how the school year is going for you?</label>
+                    <textarea name="additional_comments"></textarea>
+                </div>
+
                 <button type="submit" class="submit-btn">Submit to Google Form</button>
             </form>
         </div>
     </div>
 
     <script>
+        // Music player functionality
+        const musicSelect = document.getElementById('musicSelect');
+        const musicPlayer = document.getElementById('musicPlayer');
+        const musicSource = document.getElementById('musicSource');
+
+        musicSelect.addEventListener('change', function() {
+            if (this.value) {
+                musicSource.src = this.value;
+                musicPlayer.load();
+                musicPlayer.classList.add('active');
+                musicPlayer.play();
+            } else {
+                musicPlayer.pause();
+                musicPlayer.classList.remove('active');
+            }
+        });
+
+        // Google Form submission
         const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfneGcKwuH5Nqgr2UvV4kXnVbrY8KXnTeOKGaOYiMyE8Mt_Mw/formResponse';
         
+        // You'll need to add these 3 new fields to your Google Form and update with correct entry IDs
         const ENTRY_IDS = {
+            studentName: 'entry.XXXXXXXX',  // UPDATE THIS after adding to Google Form
+            studentClass: 'entry.XXXXXXXX',  // UPDATE THIS after adding to Google Form
             bestAt: 'entry.221142903',
             bestReason: 'entry.122729623',
             improvedAt: 'entry.1327873043',
             improvedReason: 'entry.411932764',
             betterAt: 'entry.90383619',
-            betterReason: 'entry.678420741'
+            betterReason: 'entry.678420741',
+            additionalComments: 'entry.XXXXXXXX'  // UPDATE THIS after adding to Google Form
         };
 
         document.getElementById('reflectionForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
             const formData = new FormData();
+            
+            // Add optional fields if filled
+            const studentName = document.getElementById('studentName').value;
+            const studentClass = document.getElementById('studentClass').value;
+            const additionalComments = document.querySelector('textarea[name="additional_comments"]').value;
+            
+            if (studentName) formData.append(ENTRY_IDS.studentName, studentName);
+            if (studentClass) formData.append(ENTRY_IDS.studentClass, studentClass);
+            
             formData.append(ENTRY_IDS.bestAt, document.getElementById('bestAt').value);
             formData.append(ENTRY_IDS.bestReason, document.querySelector('textarea[name="best_reason"]').value);
             formData.append(ENTRY_IDS.improvedAt, document.getElementById('improvedAt').value);
             formData.append(ENTRY_IDS.improvedReason, document.querySelector('textarea[name="improved_reason"]').value);
             formData.append(ENTRY_IDS.betterAt, document.getElementById('betterAt').value);
             formData.append(ENTRY_IDS.betterReason, document.querySelector('textarea[name="better_reason"]').value);
+            
+            if (additionalComments) formData.append(ENTRY_IDS.additionalComments, additionalComments);
 
             fetch(FORM_URL, {
                 method: 'POST',
@@ -199,9 +298,15 @@
             }).then(() => {
                 alert('Thank you! Your reflection has been submitted.');
                 document.getElementById('reflectionForm').reset();
+                musicPlayer.pause();
+                musicPlayer.classList.remove('active');
+                musicSelect.value = '';
             }).catch(() => {
                 alert('Thank you! Your reflection has been submitted.');
                 document.getElementById('reflectionForm').reset();
+                musicPlayer.pause();
+                musicPlayer.classList.remove('active');
+                musicSelect.value = '';
             });
         });
     </script>
