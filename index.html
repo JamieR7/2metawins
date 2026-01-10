@@ -93,6 +93,13 @@
         .instructions li {
             margin-bottom: 0.5rem;
         }
+        .instructions-image {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
         .music-player {
             background: #fbba07;
             color: #004587;
@@ -286,12 +293,13 @@
                 
                 <p><strong>2. Rate Yourself</strong><br>
                 Make a new copy of the "How would you rate yourself?" page and fill it in.</p>
+                <img src="images/rate.png" alt="Rate yourself" class="instructions-image">
                 
                 <p><strong>3. Quick Questionnaire</strong><br>
                 Complete the short questionnaire below.</p>
                 
                 <p><strong>4. Holiday Learning Reflection</strong><br>
-                Make a copy of the sentence starters page in your learning journal and write about something you learned during the holidays. Remember—learning happens everywhere! Maybe you:</p>
+                Make a copy of the sentence starters page in your learning journal and write about something you learned during the holidays. <strong>Use at least three of the sentence starters, but more would be better!</strong> Remember—learning happens everywhere! Maybe you:</p>
                 <ul style="margin-left: 2rem; margin-top: 0.5rem;">
                     <li>Learned a new recipe</li>
                     <li>Discovered a cool place</li>
@@ -299,6 +307,7 @@
                     <li>Tried a new skill</li>
                     <li>Read something interesting</li>
                 </ul>
+                <img src="images/sentence.png" alt="Sentence starters" class="instructions-image">
                 
                 <p><em>Remember, learning isn't something that only happens in school!</em></p>
             </div>
@@ -307,14 +316,6 @@
             <div data-lang="instructions-fr" style="display:none;">
                 <p><strong>Bonjour et Bonne Année !</strong> Nous espérons que vous avez passé de merveilleuses vacances ! Il est maintenant temps de faire le point sur votre journal d'apprentissage.</p>
                 
-                <p style="background: rgba(251, 186, 7, 0.2); padding: 1rem; border-radius: 8px; border-left: 4px solid #fbba07;"><strong>Note :</strong> Le formulaire utilise les termes anglais pour les ambitions d'apprentissage. Voici les traductions :<br><br>
-                <strong>Curiosity</strong> = Curieux-se<br>
-                <strong>Creativity</strong> = Créatif-ve<br>
-                <strong>Critical Thinking</strong> = Critique<br>
-                <strong>Collaboration</strong> = Collaboratif-ve<br>
-                <strong>Compassion</strong> = Compatissant-e<br>
-                <strong>Commitment</strong> = Engagé-e</p>
-                
                 <p><strong>À faire :</strong></p>
                 
                 <p><strong>1. Organisez votre journal</strong><br>
@@ -322,12 +323,13 @@
                 
                 <p><strong>2. Évaluez-vous</strong><br>
                 Faites une nouvelle copie de la page « Comment vous évalueriez-vous ? » et remplissez-la.</p>
+                <img src="images/rate.png" alt="Évaluez-vous" class="instructions-image">
                 
                 <p><strong>3. Questionnaire rapide</strong><br>
                 Remplissez le court questionnaire ci-dessous.</p>
                 
                 <p><strong>4. Réflexion sur l'apprentissage pendant les vacances</strong><br>
-                Faites une copie de la page d'amorces de phrases dans votre journal d'apprentissage et écrivez sur quelque chose que vous avez appris pendant les vacances. N'oubliez pas : l'apprentissage se fait partout ! Peut-être avez-vous :</p>
+                Faites une copie de la page d'amorces de phrases dans votre journal d'apprentissage et écrivez sur quelque chose que vous avez appris pendant les vacances. <strong>Utilisez au moins trois des amorces de phrases, mais plus serait encore mieux !</strong> N'oubliez pas : l'apprentissage se fait partout ! Peut-être avez-vous :</p>
                 <ul style="margin-left: 2rem; margin-top: 0.5rem;">
                     <li>Appris une nouvelle recette</li>
                     <li>Découvert un endroit sympa</li>
@@ -335,8 +337,17 @@
                     <li>Essayé une nouvelle compétence</li>
                     <li>Lu quelque chose d'intéressant</li>
                 </ul>
+                <img src="images/sentence.png" alt="Amorces de phrases" class="instructions-image">
                 
                 <p><em>Rappelez-vous, l'apprentissage ne se fait pas seulement à l'école !</em></p>
+                
+                <p style="background: rgba(251, 186, 7, 0.2); padding: 1rem; border-radius: 8px; border-left: 4px solid #fbba07; margin-top: 1.5rem;"><strong>Note :</strong> Le formulaire utilise les termes anglais pour les ambitions d'apprentissage. Voici les traductions :<br><br>
+                <strong>Curiosity</strong> = Curieux-se<br>
+                <strong>Creativity</strong> = Créatif-ve<br>
+                <strong>Critical Thinking</strong> = Critique<br>
+                <strong>Collaboration</strong> = Collaboratif-ve<br>
+                <strong>Compassion</strong> = Compatissant-e<br>
+                <strong>Commitment</strong> = Engagé-e</p>
             </div>
         </div>
 
@@ -445,8 +456,8 @@
                     <textarea name="additional_comments"></textarea>
                 </div>
 
-                <button type="submit" class="submit-btn" data-lang="submit-btn-en">Submit to Google Form</button>
-                <button type="submit" class="submit-btn" data-lang="submit-btn-fr" style="display:none;">Envoyer</button>
+                <button type="submit" class="submit-btn" data-lang="submit-btn-en">Submit your reflection</button>
+                <button type="submit" class="submit-btn" data-lang="submit-btn-fr" style="display:none;">Soumettre votre réflexion</button>
             </form>
         </div>
     </div>
