@@ -24,6 +24,20 @@
             box-shadow: 0 4px 6px rgba(0,0,0,0.3);
             display: block;
         }
+        .cover-image-box {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        .cover-image {
+            width: 100%;
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
         .instructions {
             background: rgba(255, 255, 255, 0.1);
             border-left: 4px solid #fbba07;
@@ -139,6 +153,10 @@
     <div class="container">
         <img src="images/Banner.png" alt="Learner Ambition Reflection Banner" class="banner">
         
+        <div class="cover-image-box">
+            <img src="images/metacog cover.png" alt="Metacognition Cover" class="cover-image">
+        </div>
+
         <div class="instructions">
             <p>[Add your instructions here]</p>
             <p><strong>Do you focus better with music?</strong> Put on some headphones and try it out as you fill in this form.</p>
@@ -256,17 +274,16 @@
         // Google Form submission
         const FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfneGcKwuH5Nqgr2UvV4kXnVbrY8KXnTeOKGaOYiMyE8Mt_Mw/formResponse';
         
-        // You'll need to add these 3 new fields to your Google Form and update with correct entry IDs
         const ENTRY_IDS = {
-            studentName: 'entry.XXXXXXXX',  // UPDATE THIS after adding to Google Form
-            studentClass: 'entry.XXXXXXXX',  // UPDATE THIS after adding to Google Form
-            bestAt: 'entry.221142903',
+            studentName: 'entry.221142903',
+            studentClass: 'entry.653574635',
+            bestAt: 'entry.384008678',
             bestReason: 'entry.122729623',
             improvedAt: 'entry.1327873043',
             improvedReason: 'entry.411932764',
             betterAt: 'entry.90383619',
             betterReason: 'entry.678420741',
-            additionalComments: 'entry.XXXXXXXX'  // UPDATE THIS after adding to Google Form
+            additionalComments: 'entry.1634161094'
         };
 
         document.getElementById('reflectionForm').addEventListener('submit', function(e) {
