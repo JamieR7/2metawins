@@ -16,6 +16,33 @@
             padding: 2rem;
         }
         .container { max-width: 900px; margin: 0 auto; }
+        
+        /* Language Toggle */
+        .language-toggle {
+            text-align: right;
+            margin-bottom: 1rem;
+        }
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            border: 2px solid #fbba07;
+            padding: 0.5rem 1.5rem;
+            margin-left: 0.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .lang-btn:hover {
+            background: #fbba07;
+            color: #004587;
+        }
+        .lang-btn.active {
+            background: #fbba07;
+            color: #004587;
+        }
+        
         .banner {
             width: 100%;
             max-width: 900px;
@@ -228,6 +255,12 @@
 </head>
 <body>
     <div class="container">
+        <!-- Language Toggle -->
+        <div class="language-toggle">
+            <button class="lang-btn active" onclick="switchLanguage('en')">English</button>
+            <button class="lang-btn" onclick="switchLanguage('fr')">Français</button>
+        </div>
+
         <img src="images/Banner.png" alt="Learner Ambition Reflection Banner" class="banner">
         
         <div class="cover-image-box">
@@ -235,14 +268,20 @@
         </div>
 
         <div class="instructions">
-            <p>[Add your instructions here]</p>
+            <p data-lang="instructions-en">[Add your instructions here]</p>
+            <p data-lang="instructions-fr" style="display:none;">[Ajoutez vos instructions ici]</p>
         </div>
 
         <div class="music-player">
-            <p class="title">Study Music</p>
-            <p>Do you focus better with music? Put on some headphones and try it out as you fill in this form. For this task though, stick to these 2 options, they have been made especially to help you focus; see if it works for you!</p>
+            <p class="title" data-lang="music-title-en">Study Music</p>
+            <p class="title" data-lang="music-title-fr" style="display:none;">Musique d'étude</p>
+            
+            <p data-lang="music-desc-en">Do you focus better with music? Put on some headphones and try it out as you fill in this form. For this task though, stick to these 2 options, they have been made especially to help you focus; see if it works for you!</p>
+            <p data-lang="music-desc-fr" style="display:none;">Vous concentrez-vous mieux avec de la musique ? Mettez des écouteurs et essayez en remplissant ce formulaire. Pour cette tâche, choisissez l'une de ces 2 options ; elles ont été spécialement conçues pour vous aider à vous concentrer. Voyez si cela fonctionne pour vous !</p>
+            
             <select id="musicSelect">
-                <option value="">Select music...</option>
+                <option value="" data-lang="music-select-en">Select music...</option>
+                <option value="" data-lang="music-select-fr" style="display:none;">Sélectionner la musique...</option>
                 <option value="Music/BrainFM.mp3">BrainFM</option>
                 <option value="Music/Endel.mp3">Endel</option>
             </select>
@@ -253,23 +292,28 @@
         </div>
 
         <div class="reflection-section">
-            <h2>Learner Ambition Reflection</h2>
+            <h2 data-lang="form-title-en">Learner Ambition Reflection</h2>
+            <h2 data-lang="form-title-fr" style="display:none;">Réflexion sur les ambitions d'apprentissage</h2>
             
             <form id="reflectionForm">
                 <div class="input-group">
-                    <label>Name (optional)</label>
+                    <label data-lang="label-name-en">Name (optional)</label>
+                    <label data-lang="label-name-fr" style="display:none;">Nom (facultatif)</label>
                     <input type="text" id="studentName" name="student_name">
                 </div>
 
                 <div class="input-group">
-                    <label>Class (optional)</label>
+                    <label data-lang="label-class-en">Class (optional)</label>
+                    <label data-lang="label-class-fr" style="display:none;">Classe (facultatif)</label>
                     <input type="text" id="studentClass" name="student_class">
                 </div>
 
                 <div class="input-group">
-                    <label>What Learner Ambition do you feel you are best at?</label>
+                    <label data-lang="label-best-en">What Learner Ambition do you feel you are best at?</label>
+                    <label data-lang="label-best-fr" style="display:none;">Quelle ambition d'apprentissage représente votre plus grande force ?</label>
                     <select id="bestAt" name="best_at" required>
-                        <option value="">-- Select a Learner Ambition --</option>
+                        <option value="" data-lang="option-select-en">-- Select a Learner Ambition --</option>
+                        <option value="" data-lang="option-select-fr" style="display:none;">-- Sélectionner une ambition d'apprentissage --</option>
                         <option value="Curiosity">Curiosity</option>
                         <option value="Creativity">Creativity</option>
                         <option value="Critical Thinking">Critical Thinking</option>
@@ -280,14 +324,17 @@
                 </div>
 
                 <div class="input-group">
-                    <label>What makes you say that?</label>
+                    <label data-lang="label-why-en">What makes you say that?</label>
+                    <label data-lang="label-why-fr" style="display:none;">Qu'est-ce qui vous fait dire cela ?</label>
                     <textarea name="best_reason" required></textarea>
                 </div>
 
                 <div class="input-group">
-                    <label>What Learner Ambition do you feel you have improved at?</label>
+                    <label data-lang="label-improved-en">What Learner Ambition do you feel you have improved at?</label>
+                    <label data-lang="label-improved-fr" style="display:none;">Dans quelle ambition d'apprentissage avez-vous le plus progressé ?</label>
                     <select id="improvedAt" name="improved_at" required>
-                        <option value="">-- Select a Learner Ambition --</option>
+                        <option value="" data-lang="option-select-en">-- Select a Learner Ambition --</option>
+                        <option value="" data-lang="option-select-fr" style="display:none;">-- Sélectionner une ambition d'apprentissage --</option>
                         <option value="Curiosity">Curiosity</option>
                         <option value="Creativity">Creativity</option>
                         <option value="Critical Thinking">Critical Thinking</option>
@@ -298,14 +345,17 @@
                 </div>
 
                 <div class="input-group">
-                    <label>What makes you say that?</label>
+                    <label data-lang="label-why-en">What makes you say that?</label>
+                    <label data-lang="label-why-fr" style="display:none;">Qu'est-ce qui vous fait dire cela ?</label>
                     <textarea name="improved_reason" required></textarea>
                 </div>
 
                 <div class="input-group">
-                    <label>What Learner Ambition do you feel you could do better at?</label>
+                    <label data-lang="label-better-en">What Learner Ambition do you feel you could do better at?</label>
+                    <label data-lang="label-better-fr" style="display:none;">Dans quelle ambition d'apprentissage pourriez-vous vous améliorer ?</label>
                     <select id="betterAt" name="better_at" required>
-                        <option value="">-- Select a Learner Ambition --</option>
+                        <option value="" data-lang="option-select-en">-- Select a Learner Ambition --</option>
+                        <option value="" data-lang="option-select-fr" style="display:none;">-- Sélectionner une ambition d'apprentissage --</option>
                         <option value="Curiosity">Curiosity</option>
                         <option value="Creativity">Creativity</option>
                         <option value="Critical Thinking">Critical Thinking</option>
@@ -316,16 +366,19 @@
                 </div>
 
                 <div class="input-group">
-                    <label>What makes you say that?</label>
+                    <label data-lang="label-why-en">What makes you say that?</label>
+                    <label data-lang="label-why-fr" style="display:none;">Qu'est-ce qui vous fait dire cela ?</label>
                     <textarea name="better_reason" required></textarea>
                 </div>
 
                 <div class="input-group">
-                    <label>Is there anything else you would like to tell us about the metacognition project or how the school year is going for you?</label>
+                    <label data-lang="label-additional-en">Is there anything else you would like to tell us about the metacognition project or how the school year is going for you?</label>
+                    <label data-lang="label-additional-fr" style="display:none;">Y a-t-il autre chose que vous aimeriez nous dire sur le projet de métacognition ou sur le déroulement de votre année scolaire ?</label>
                     <textarea name="additional_comments"></textarea>
                 </div>
 
-                <button type="submit" class="submit-btn">Submit to Google Form</button>
+                <button type="submit" class="submit-btn" data-lang="submit-btn-en">Submit to Google Form</button>
+                <button type="submit" class="submit-btn" data-lang="submit-btn-fr" style="display:none;">Envoyer</button>
             </form>
         </div>
     </div>
@@ -334,14 +387,44 @@
     <div id="successModal" class="success-modal">
         <div class="success-content">
             <div class="success-icon">✨</div>
-            <div class="success-message">
-                Thank you for taking the time to reflect; it really does make a difference to your learning!
+            <div class="success-message" data-lang="success-msg-en">
+                Thank you for taking the time to reflect, it really does make a difference to your learning!
             </div>
-            <button class="success-close-btn" onclick="closeSuccessModal()">Close</button>
+            <div class="success-message" data-lang="success-msg-fr" style="display:none;">
+                Merci d'avoir pris le temps de réfléchir, cela fait vraiment une différence pour votre apprentissage !
+            </div>
+            <button class="success-close-btn" onclick="closeSuccessModal()" data-lang="close-btn-en">Close</button>
+            <button class="success-close-btn" onclick="closeSuccessModal()" data-lang="close-btn-fr" style="display:none;">Fermer</button>
         </div>
     </div>
 
     <script>
+        let currentLang = 'en';
+
+        function switchLanguage(lang) {
+            currentLang = lang;
+            
+            // Hide all language elements
+            document.querySelectorAll('[data-lang]').forEach(el => {
+                el.style.display = 'none';
+            });
+            
+            // Show elements for selected language
+            document.querySelectorAll(`[data-lang$="-${lang}"]`).forEach(el => {
+                if (el.tagName === 'OPTION') {
+                    el.style.display = 'block';
+                } else {
+                    el.style.display = '';
+                }
+            });
+            
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
         // Music player functionality
         const musicSelect = document.getElementById('musicSelect');
         const musicPlayer = document.getElementById('musicPlayer');
