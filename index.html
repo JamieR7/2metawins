@@ -334,21 +334,19 @@
 
         .responses-section .iframe-wrapper {
             position: relative;
-            height: 780px;
+            height: 600px;
             overflow: hidden;
             border-radius: 8px;
         }
 
         .responses-section iframe {
             position: absolute;
-            top: -24px;
-            /* header clip, adjusted for scale */
+            top: -40px;
+            /* clips the file-name header bar */
             left: 0;
-            width: 59%;
-            /* 59% × 1.7 ≈ 100% visible width */
-            height: calc(100% + 50px);
-            transform: scale(1.7);
-            transform-origin: top left;
+            width: 100%;
+            height: calc(100% + 75px);
+            /* compensates so bottom tab is also clipped */
             border: none;
             background: #fff;
         }
