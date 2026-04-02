@@ -332,11 +332,22 @@
             line-height: 1.6;
         }
 
-        .responses-section iframe {
-            width: 100%;
+        .responses-section .iframe-wrapper {
+            position: relative;
             height: 500px;
-            border: none;
+            overflow: hidden;
             border-radius: 8px;
+        }
+
+        .responses-section iframe {
+            position: absolute;
+            top: -40px;
+            /* hides the file-name header bar */
+            left: 0;
+            width: 100%;
+            height: calc(100% + 75px);
+            /* extra height compensates for clipped top + bottom tab */
+            border: none;
             background: #fff;
         }
 
@@ -582,9 +593,11 @@
                 answered!</p>
             <p data-lang="responses-desc-fr" style="display:none;">Maintenant que tu as soumis ta réflexion, voici
                 comment tes camarades ont répondu !</p>
-            <iframe
-                src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRC4taIR0pLsOpfmVT50PoVLz7oGyNV3x1hu6ZJJG1CoeEfC7C-7kWR4zeENST_nNWNUD_UoEZSCQxD/pubhtml?gid=2056235113&single=true"
-                title="Class responses" loading="lazy"></iframe>
+            <div class="iframe-wrapper">
+                <iframe
+                    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRC4taIR0pLsOpfmVT50PoVLz7oGyNV3x1hu6ZJJG1CoeEfC7C-7kWR4zeENST_nNWNUD_UoEZSCQxD/pubhtml?gid=2056235113&single=true"
+                    title="Class responses" loading="lazy"></iframe>
+            </div>
         </div>
 
         <!-- Task 4: Holiday Learning Reflection -->
